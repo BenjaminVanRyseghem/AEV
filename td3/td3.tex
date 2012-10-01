@@ -1,0 +1,94 @@
+\documentclass[a4paper,10pt]{article}
+\input{/Users/benjamin/Documents/Education/LaTeX/macro.tex}
+
+\title{AEV: SŽance 3}
+\author{Benjamin \bsc{Van Ryseghem}}
+
+\begin{document}
+\maketitle
+
+\section{Exercice 1}
+\subsection{Question A}
+
+\subsection{Question B}
+
+See figure~\ref{fig:ex1_state_diagram}.
+
+\begin{figure}[ht]
+\begin{center}
+     \includegraphics[width=10cm]{figures/ex1_state_diagram}
+\end{center}
+     \caption{State Diagram}
+     \label{fig:ex1_state_diagram}
+\end{figure}
+
+\subsection{Question C}
+
+See figure~\ref{fig:ex1_chronogram}.
+
+\begin{figure}[ht]
+\begin{center}
+     \includegraphics[width=10cm]{figures/ex1_chronogram}
+\end{center}
+     \caption{Chronogram}
+     \label{fig:ex1_chronogram}
+\end{figure}
+
+\newpage
+
+\section{Exercice 2}
+
+\begin{verbatimtab}
+entity fsm2 is  Ê Êport ( Ê Ê Ê Êclock : n std_logic; Ê Ê Ê ÊS : out unsigned (3 downto 0) Ê Ê Ê Ê);end Ê Êfsm2;architecture afsm2 of fsm2 is  Ê Êtype etat_type is (cours,TD,DS,TP); Ê Êsignal Žtat : etat_type; Ê Êbegin Ê Ê Ê Êprocess Ê Ê Ê Êbegin Ê Ê Ê Ê Ê Êwait until rising_edge(clock); Ê Ê Ê Ê Ê Êcase stat is  Ê Ê Ê Ê Ê Ê Ê Êwhen cours => Žtat <= TD;  Ê Ê Ê Ê Ê Ê Ê Êwhen TD => Žtat <= TP; Ê Ê Ê Ê Ê Ê Ê Êwhen TP => Žtat <= DS; Ê Ê Ê Ê Ê Ê Ê Êwhen DS => Žtat <= cours; Ê Ê Ê Ê Ê Êend case; Ê Ê Ê Êend process; Ê Ê Ê Ê Ê Ê Ê Êwith stat select Ê Ê Ê ÊS <= "1100" when cours, Ê Ê Ê Ê Ê Ê "0010" when TD, Ê Ê Ê Ê Ê Ê "0001" when TP, Ê Ê Ê Ê Ê Ê "1100" when DS;end afsm2;
+\end{verbatimtab}
+
+
+\section{Exercice 3}
+
+
+
+\section{Exercice 4}
+
+See figure~\ref{fig:ex4_state_diagram}.
+
+\begin{figure}[ht]
+\begin{center}
+     \includegraphics[width=10cm]{figures/ex4_state_diagram}
+\end{center}
+     \caption{State Diagram}
+     \label{fig:ex4_state_diagram}
+\end{figure}
+
+\newpage
+
+\begin{verbatimtab}
+entity FSM_6 is 
+port( 
+	CLOCK: in bit; 
+	SIG: in bit, 
+	EDG: out bit );
+end FSM_6;
+architecture AFSM_6 of FSM_6 is 
+	type etat_type is (first, second, third, fourth, nothing);
+	signal etat : etat_type;
+begin 
+	process
+	begin
+		wait until rising_edge (CLOCK);
+		case etat is
+			when nothing	=> if (SIG = 0) etat <= first else etat <= nothing;
+			when first	=> if (SIG = 0) etat <= second else etat <= nothing;
+			when second	=> if (SIG = 1) etat <= third else etat <= nothing;
+			when third	=> if (SIG = 1) etat <= fourth else etat <= nothing;
+			when fourth 	=> if (SIG = 0) etat <= first else etat <= nothing;
+		end case;
+	end process;
+		
+	with etat select 
+	EDG <= 	"0" when fourth,		"1" when others; 
+end AFSM_6;
+\end{verbatimtab}
+
+\signature
+
+\end{document}
