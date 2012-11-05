@@ -1,0 +1,232 @@
+\documentclass[a4paper,10pt]{article}
+\input{/Users/benjamin/Documents/Education/LaTeX/macro.tex}
+
+\title{AEV: Séance 7}
+\author{Benjamin \bsc{Van Ryseghem}}
+
+\begin{document}
+\maketitle
+
+\section{Exercice 1}
+\subsection{Question 1}
+
+\begin{itemize}
+\item taille de la mémoire: $2^{16}$
+\item cache de 32 lignes : $2^5$
+\item nombre de mots par bloc : $2^3$
+\end{itemize}
+
+\paragraph{Résultat:}
+\begin{tabular}{|c|c|c|}
+\hline
+tag & ligne & mot\\
+\hline
+8 (\emph{16-ligne-mot}) & 5 & 3\\
+\hline
+\end{tabular}
+
+\subsection{Question 2}
+\paragraph{0001000100011011 :}
+\begin{tabular}{|c|c|c|}
+\hline
+tag & ligne & mot\\
+\hline
+00010001 & 00011 & 011\\
+\hline
+\end{tabular}
+
+Donc, c'est la 3\up{ème} ligne.
+
+\paragraph{1100001100110100 :}
+\begin{tabular}{|c|c|c|}
+\hline
+tag & ligne & mot\\
+\hline
+11000011 & 00110 & 100\\
+\hline
+\end{tabular}
+
+Donc, c'est la 6\up{ème} ligne.
+
+\paragraph{1101000000011101 :}
+\begin{tabular}{|c|c|c|}
+\hline
+tag & ligne & mot\\
+\hline
+11010000 & 00011 & 101\\
+\hline
+\end{tabular}
+
+Donc, c'est la 3\up{ème} ligne.
+
+\paragraph{1010101010101010 :}
+\begin{tabular}{|c|c|c|}
+\hline
+tag & ligne & mot\\
+\hline
+10101010 & 10101 & 010\\
+\hline
+\end{tabular}
+
+Donc, c'est la 21\up{ème} ligne.
+
+\subsection{Question 3}
+
+L'octet d'adresse \emph{0001101000011010} est rangé dans la ligne 3.
+Les adresses 1 et 3 de la question précédente sont rangées au même endroit.
+
+\subsection{Question 4}
+Son tag, pour pouvoir retrouver la donnée, et être sur qu'elle n'a pas été écrasée.
+
+\subsection{Question 5}
+\fbox{
+	\begin{minipage}{1\textwidth}
+		\[\mbox{taille effective} = (\mbox{taille d'une ligne} + \mbox{taille d'un tag}) \times \mbox{nombre de lignes}\]
+	\end{minipage}
+}
+
+\paragraph{Calcul de la taille effective : }
+\begin{eqnarray*}
+\mbox{taille effective} &=& (2^3 + 1) * 2^5\\
+\mbox{taille effective} &=& 2^8+ 2^5\\
+\mbox{taille effective} &=& 288 \ \mbox{octets}
+\end{eqnarray*}
+
+La taille effective est donc de 288 octets.
+
+\section{Exercice 2}
+\subsection{Question 1}
+\begin{itemize}
+\item taille de la mémoire: $64K = 2^{16}$
+\item taille du cache : $1024: 2^{10}$
+\item nombre de mots par bloc : $128: 2^7$
+\item nombre de lignes : $\dfrac{\mbox{taille du cache}}{\mbox{nombre de mots par ligne}}=\dfrac{2^{10}}{2^7}=2^3$
+\end{itemize}
+
+\paragraph{Résultat:}
+\begin{tabular}{|c|c|c|}
+\hline
+tag & ligne & mot\\
+\hline
+6 (\emph{16-ligne-mot}) & 3 & 7\\
+\hline
+\end{tabular}
+
+\subsection{Question 2}
+\begin{itemize}
+\item nombre total d'accès mémoire: $25836$
+\item nombre de défaut de cache: $10+4\times9+2 = 48$
+\item nombre d'accès au cache: $25836 - 48 = 25788$
+\end{itemize}
+\paragraph{Temps d'accès moyen: }\[ \dfrac{48\mbox{M}+25788\mbox{m}}{25836}\]
+
+\section{Exercice 3}
+\subsection{Question 1}
+\begin{itemize}
+\item taille de la mémoire: $2^{32}$
+\item nombre de lignes : $2^{14}$
+\item nombre de mots par bloc : $1=2^0$
+\end{itemize}
+
+\paragraph{Résultat:}
+\begin{tabular}{|c|c|c|}
+\hline
+tag & ligne & mot\\
+\hline
+18 (\emph{32-ligne-mot}) & 14 & 0\\
+\hline
+\end{tabular}
+
+\paragraph{Taille totale : } $(2^5+18)\times2^{14}$ bits
+
+\subsection{Question 2}
+\begin{itemize}
+\item taille de la mémoire: $2^{32}$
+\item nombre de lignes : $2^{(14-4)}=2^{10}$
+\item nombre de mots par bloc : $16=2^4$
+\end{itemize}
+
+\paragraph{Résultat:}
+\begin{tabular}{|c|c|c|}
+\hline
+tag & ligne & mot\\
+\hline
+18 (\emph{32-ligne-mot}) & 10 & 4\\
+\hline
+\end{tabular}
+
+\paragraph{Taille totale : } $(16\times2^5+18)\times2^{10}$ bits
+
+\subsection{Question 3}
+\begin{itemize}
+\item taille de la mémoire: $2^{32}$
+\item nombre de mots par bloc : $1=2^0$
+\end{itemize}
+
+\paragraph{Résultat:}
+\begin{tabular}{|c|c|}
+\hline
+tag & mot\\
+\hline
+32 (\emph{32-mot}) & 0\\
+\hline
+\end{tabular}
+
+\paragraph{Taille totale : } $(16\times2^5+18)\times2^{10}$ bits
+
+
+
+\subsection{Question 4}
+\begin{itemize}
+\item taille de la mémoire: $2^{32}$
+\item nombre de blocs : $2^{(14-4)}=2^{10}$
+\item nombre de mots par bloc : $1=2^0$
+\end{itemize}
+
+\paragraph{Résultat:}
+\begin{tabular}{|c|c|c|}
+\hline
+tag & ligne & mot\\
+\hline
+22 (\emph{32-ligne-mot}) & 10 & 0\\
+\hline
+\end{tabular}
+
+\paragraph{Taille totale : } $(2^5+32)\times2^{14}$ bits
+
+\subsection{Question 5}
+\begin{itemize}
+\item taille de la mémoire: $2^{32}$
+\item nombre d'ensemble : $2^{(14-4-3)}=2^{7}$
+\item nombre de mots par bloc : $8=2^3$
+\end{itemize}
+
+\paragraph{Résultat:}
+\begin{tabular}{|c|c|c|}
+\hline
+tag & ligne & mot\\
+\hline
+22 (\emph{32-ligne-mot}) & 7 & 3\\
+\hline
+\end{tabular}
+
+\paragraph{Taille totale : } $(8\times2^5+22)\times2^{14}$ bits
+
+\section{Exercice 4}
+\subsection{Question 1}
+\subsubsection{a)}
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+trace		&a	&b	&a	&c	&a	&b	&d	&b	&a	&c	&d	\\
+default	&*	&*	& 	&*	&*	&*	&*	&	&*	&*	&*	\\
+cache	&a	&a	&a	&c	&c	&b	&b	&b	&a	&a	&d	\\
+		&\#	&b	&b	&b	&a	&a	&d	&d	&d	&c	&c	\\
+\hline
+
+
+\end{tabular}
+
+\signature
+
+\end{document}
