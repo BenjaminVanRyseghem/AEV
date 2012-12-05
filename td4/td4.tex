@@ -1,0 +1,122 @@
+\documentclass[a4paper,10pt]{article}
+\input{/Users/benjamin/Documents/Education/LaTeX/macro.tex}
+
+\title{AEV: Séance 4}
+\author{Benjamin \bsc{Van Ryseghem}}
+
+\begin{document}
+\maketitle
+
+\section{Exercice 1}
+\subsection{Question 1}
+
+\paragraph{Infixé}
+\begin{verbatim}
+T = (A + B) * ((C + D) - (E * F))
+\end{verbatim}
+
+\paragraph{Préfixé}
+\begin{verbatim}
+T = * + A B - + C D * E F
+\end{verbatim}
+\paragraph{Postfixé}
+\begin{verbatim}
+T = AB + C D + E F * - *
+\end{verbatim}
+
+\subsection{Question 2}
+\paragraph{ASM}
+\begin{verbatimtab}
+LIT	E
+LIT	F
+IP	2105
+LIT	C
+LIT	D
+IP	2103
+IP	2104
+LIT 	A
+LIT 	B
+IP 	2103
+IP	2105
+\end{verbatimtab}
+\paragraph{Binaire}
+\begin{verbatimtab}
+0010eeeeeeeeeeee
+0010ffffffffffff
+1100110000000101
+0010cccccccccccc
+0010dddddddddddd
+1100100000000011
+1100100000000100
+0010aaaaaaaaaaaa
+0010bbbbbbbbbbbb
+1100100000000011
+1100110000000101
+\end{verbatimtab}
+
+\subsection{Question 3}
+
+\paragraph{Infixé}
+\begin{verbatim}
+(A + B ) * (A - B)
+\end{verbatim}
+\paragraph{Postfixé}
+\begin{verbatim}
+A B + A B - *
+\end{verbatim}
+\paragraph{ASM}
+\begin{verbatimtab}
+LIT 	A
+LIT 	B
+IP 	2103
+LIT 	A
+LIT 	B
+IP 	2104
+IP	2105
+\end{verbatimtab}
+\paragraph{Binaire}
+\begin{verbatimtab}
+0010aaaaaaaaaaaa
+0010bbbbbbbbbbbb
+1100100000000011
+0010aaaaaaaaaaaa
+0010bbbbbbbbbbbb
+1100100000000100
+1100110000000101
+\end{verbatimtab}
+
+\section{Exercice 2}
+
+\paragraph{Infixé}
+\begin{eqnarray*}
+y &=& (a2*c1-a1*c2)/ (a2*b1-a1*b2)\\
+x &=& (c1-b1*y)/a
+\end{eqnarray*}
+
+\paragraph{Postfixé}
+\begin{eqnarray*}
+y &=&  a2\ c1\ *\ a1\ c2\ *\ -\ a2\ b1\ *\ a1\ b2\ *\ -\ / \\
+x &=& b1\ y\ *\ c1\ -\ a\ /
+\end{eqnarray*}
+
+pile: $a1$, $b1$, $c1$, $a2$, $b2$, $c2$.\\
+rot\\
+pile: $c1$, $a1$, $b1$, $a2$, $b2$, $c2$.\\
+store dans registre A\\
+pile: $a1$, $b1$, $a2$, $b2$, $c2$.\\
+rot\\
+pile: $a2$, $a1$, $b1$, $b2$, $c2$.\\
+read from A\\
+pile: $c1$, $a2$, $a1$, $b1$, $b2$, $c2$.\\
+mul(0,1) \emph{mul1}\\
+pile: $mul1$, $c1$, $a2$, $a1$, $b1$, $b2$, $c2$.\\
+store into A\\
+pile: $c1$, $a2$, $a1$, $b1$, $b2$, $c2$.\\
+rot\\
+pile: $a1$, $c1$, $a2$, $b1$, $b2$, $c2$.\\
+
+
+
+\signature
+
+\end{document}

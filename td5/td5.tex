@@ -1,0 +1,99 @@
+\documentclass[a4paper,10pt]{article}
+\input{/Users/benjamin/Documents/Education/LaTeX/macro.tex}
+
+\title{Séance }
+\author{Benjamin \bsc{Van Ryseghem}}
+
+\begin{document}
+\maketitle
+
+\section{Exercice 1}
+\subsection{Question 1}
+
+\section{Exercice 2}
+\subsection{Question 1}
+\subsection{Question 2}
+
+\begin{verbatim}
+VMVI I,0
+VMVI D,1
+VLOAD B
+
+VMVI D,2
+VLOAD C
+
+VADD B,C
+
+VMVI D,0
+VSTORE B
+\end{verbatim}
+
+\subsection{Question 3}
+\begin{verbatim}
+MVI INX1 0
+MVI INX2 10
+VMVI I,0
+
+boucle: VMVI D,10
+VLOAD B
+
+VMVI D,20
+VLOAD C
+
+VADD B,C
+
+VMVI D,0
+VSTORE B
+
+VADDI I,1
+INC INX1
+JLT INX1, INX1,boucle
+\end{verbatim}
+
+\subsection{Question 4}
+\verb?VMASK #? où \verb?#? est un masque de 64 bits, 64 étant le nombre de PE
+
+\begin{verbatim}
+VMASK 
+VMVI I,0
+VMVI D,1
+VLOAD B
+
+VMVI D,2
+VLOAD C
+
+VADD B,C
+
+VMVI D,0
+VSTORE B
+\end{verbatim}
+
+\subsection{Question 6}
+\begin{verbatim}
+MVI INX1 0
+MVI INX2 6
+
+
+VMVI R,0
+
+VMVI I,0
+VMVI D,0
+VLOAD S
+
+VMVI D,1
+VLOAD A
+
+VADD S,A
+
+boucle:LCYCLE I
+VADD S,R
+VADDI I,1
+INC INX1
+JLT INX1, INX1,boucle
+
+\end{verbatim}
+
+
+\signature
+
+\end{document}
